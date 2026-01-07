@@ -53,3 +53,6 @@ Hybrid pages avoid unnecessary re-renders while staying updated
 Reflection
 
 If the application scaled to 10x more users, relying solely on SSR would increase server load and cost. Static rendering and ISR would be preferred for most pages, reserving SSR only for truly real-time or user-specific views.
+
+
+created and initilized the nextjs.
