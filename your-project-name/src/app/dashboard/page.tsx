@@ -1,9 +1,10 @@
 "use client";
+import PatientTable from "../components/PatientTable";
+
 export default function DashboardPage() {
   return (
     <div className="p-8">
-      <h1 className="text-2xl font-bold">Dashboard</h1>
-      <p>This is the dashboard page.</p>
+      <PatientTable />
     </div>
   );
 }
