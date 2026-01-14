@@ -9,7 +9,8 @@ export default function Navbar() {
       {/* Left: Logo + Links */}
       <div className="flex items-center gap-10">
         {/* Logo */}
-        <Link href="/" className="text-2xl font-black tracking-tight">
+        {/* Changed the name of the health to black */}
+        <Link href="/" className="text-2xl font-black tracking-tight text-[#1A2E26]">
           Health<span className="text-[#D4AF37]">Sync</span>
         </Link>
 
