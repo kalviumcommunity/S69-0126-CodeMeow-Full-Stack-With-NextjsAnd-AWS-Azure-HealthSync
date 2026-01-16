@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Link from "next/link";
 import { 
   Activity, 
   Users, 
@@ -11,6 +12,7 @@ import {
   BarChart3,
   LucideIcon
 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 /**
  * Types for Navigation Items
@@ -21,13 +23,14 @@ interface NavItemProps {
   active?: boolean;
   isCollapsed: boolean;
   index: number;
+  onClick?: () => void;
 }
 
 /**
  * Reusable Navigation Item Component with staggered animation delay
  */
 const NavItem: React.FC<NavItemProps> = ({ icon: Icon, label, active = false, isCollapsed, index }) => (
-  <button 
+  <button
     style={{ transitionDelay: `${index * 50}ms` }}
     className={`w-full flex items-center gap-4 p-3.5 rounded-2xl transition-all duration-300 group relative
       ${active 
@@ -59,7 +62,10 @@ const NavItem: React.FC<NavItemProps> = ({ icon: Icon, label, active = false, is
  */
 export default function Sidebar() {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
-
+  const router = useRouter();
+  // const addPatients = () => {
+  //   router.push('/add-patients');
+  // }
   return (
     <aside 
       className={`hidden lg:flex flex-col bg-[#1A2E26] text-white transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] relative z-50 shadow-2xl h-screen shrink-0
@@ -93,7 +99,9 @@ export default function Sidebar() {
         </button>
 
         <NavItem index={0} icon={LayoutDashboard} label="Dashboard" active isCollapsed={isCollapsed} />
-        <NavItem index={1} icon={Users} label="Add Patients" isCollapsed={isCollapsed} />
+        <Link href="/add-patients">
+          <NavItem  index={1} icon={Users} label="Add Patients" isCollapsed={isCollapsed} />
+        </Link>
         <NavItem index={2} icon={Users} label="Add Records" isCollapsed={isCollapsed} />
         <NavItem index={3} icon={BarChart3} label="Request Consult" isCollapsed={isCollapsed} />
         <NavItem index={4} icon={HelpCircle} label="Technical Support" isCollapsed={isCollapsed} />
