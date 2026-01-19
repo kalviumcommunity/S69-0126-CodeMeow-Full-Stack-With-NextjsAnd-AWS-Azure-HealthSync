@@ -102,7 +102,9 @@ export default function Sidebar() {
         <Link href="/add-patients">
           <NavItem  index={1} icon={Users} label="Add Patients" isCollapsed={isCollapsed} />
         </Link>
-        <NavItem index={2} icon={Users} label="Add Records" isCollapsed={isCollapsed} />
+        <Link href="/add-records">
+          <NavItem index={2} icon={Users} label="Add Records" isCollapsed={isCollapsed} />
+        </Link>
         <NavItem index={3} icon={BarChart3} label="Request Consult" isCollapsed={isCollapsed} />
         <NavItem index={4} icon={HelpCircle} label="Technical Support" isCollapsed={isCollapsed} />
         
