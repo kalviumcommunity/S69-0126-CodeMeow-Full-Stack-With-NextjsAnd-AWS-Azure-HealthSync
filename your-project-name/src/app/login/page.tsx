@@ -20,6 +20,9 @@ export default function Login() {
   const goToSignup = () => {
     router.push('/signup');
   }
+  const redirect = () => {
+    router.push('/dashboard')
+  }
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 100);
     return () => clearTimeout(timer);
@@ -155,6 +158,7 @@ export default function Login() {
 
               {/* Submit Button */}
               <button 
+                onClick={() => redirect()}
                 type="submit"
                 className={`w-full bg-[#1A2E26] hover:bg-[#254136] text-white font-black py-4 md:py-5 rounded-xl md:rounded-2xl flex items-center justify-center gap-3 shadow-xl shadow-[#1A2E26]/10 active:scale-[0.99] transition-all duration-500 delay-400 group uppercase text-[10px] md:text-[11px] tracking-[0.2em] ${
                   isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
