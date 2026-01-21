@@ -6,3 +6,5 @@ export async function GET() {
     status: "OK",
   });
 }
+
+// initialized the database
