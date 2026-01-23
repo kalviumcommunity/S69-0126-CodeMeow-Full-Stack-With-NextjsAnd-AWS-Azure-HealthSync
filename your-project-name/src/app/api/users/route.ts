@@ -1,54 +1,45 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-
-// TEMP: Replace this with DB later
-const users: any[] = [];
+import connectToDatabase from "@/lib/db";
+import User from "@/models/user";
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { name, email, password, role } = body;
 
-    // 1. Validation
     if (!name || !email || !password) {
-      return NextResponse.json(
-        { message: "All fields are required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ message: "All fields are required" }, { status: 400 });
     }
 
-    // 2. Check if user already exists
-    const existingUser = users.find((u) => u.email === email);
+    await connectToDatabase();
+
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return NextResponse.json(
-        { message: "User already exists" },
-        { status: 409 }
-      );
+      return NextResponse.json({ message: "User already exists" }, { status: 409 });
     }
 
-    // 3. Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // 4. Save user (temporary in-memory)
-    const newUser = {
-      id: Date.now(),
+    const newUser = await User.create({
       name,
       email,
       password: hashedPassword,
       role: role || "doctor",
-    };
+    });
 
-    users.push(newUser);
+    return NextResponse.json({ message: "User registered successfully", user: newUser }, { status: 201 });
+  } catch (error: any) {
+    return NextResponse.json({ message: error.message || "Internal server error" }, { status: 500 });
+  }
+}
 
-    // 5. Return success
-    return NextResponse.json(
-      { message: "User registered successfully" },
-      { status: 201 }
-    );
-  } catch (error) {
-    return NextResponse.json(
-      { message: "Internal server error" },
-      { status: 500 }
-    );
+export async function GET() {
+  try {
+    await connectToDatabase();
+    const users = await User.find();
+    return NextResponse.json(users);
+  } catch (error: any) {
+    return NextResponse.json({ message: error.message || "Internal server error" }, { status: 500 });
   }
 }
