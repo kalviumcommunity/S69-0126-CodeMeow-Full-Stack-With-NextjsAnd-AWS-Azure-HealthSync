@@ -3,6 +3,8 @@ import bcrypt from "bcryptjs";
 import connectToDatabase from "@/lib/db";
 import User from "@/models/user";
 
+// added connection for signup and login 
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
