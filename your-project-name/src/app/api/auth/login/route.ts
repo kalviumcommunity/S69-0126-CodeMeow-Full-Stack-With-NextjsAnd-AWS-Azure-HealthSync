@@ -4,7 +4,7 @@ import connectToDatabase from "@/lib/db";
 import User from "@/models/user";
 
 // added connection for signup and login 
-
+// connection secure more for signup and login- backend
 export async function POST(req: Request) {
   try {
     const body = await req.json();
