@@ -1,107 +1,62 @@
 "use client";
 
-import { useState } from "react";
 import Sidebar from "../components/sidebar/Sidebar";
+import { Mail, HelpCircle } from "lucide-react";
 
 export default function TechnicalSupportPage() {
-  const [loading, setLoading] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-
-    setTimeout(() => {
-      alert("Support request submitted successfully");
-      setLoading(false);
-    }, 1000);
-  };
-
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex min-h-screen bg-[#F4F6F2]">
       {/* Sidebar */}
       <Sidebar />
 
       {/* Main Content */}
-      <main className="flex-1 p-6">
-        {/* Page Header */}
-        <div className="mb-6">
-          <h1 className="text-xl font-semibold text-gray-800">
+      <main className="flex-1 p-10">
+        {/* Header */}
+        <div className="mb-10">
+          <h1 className="text-2xl font-bold text-[#1A2E26]">
             Technical Support
           </h1>
-          <p className="text-sm text-gray-500 mt-1">
-            Raise a support request for any technical issues you face.
+          <p className="text-sm text-slate-500 mt-1">
+            Need help? Contact our technical support team.
           </p>
         </div>
 
         {/* Support Card */}
-        <div className="bg-white rounded-xl shadow-sm p-6 max-w-3xl">
-          <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Name */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Name
-              </label>
-              <input
-                type="text"
-                required
-                placeholder="Enter your name"
-                className="w-full rounded-lg border border-gray-200 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
-              />
+        <div className="flex justify-center">
+          <div className="bg-white rounded-2xl shadow-xl border border-slate-200 w-full max-w-xl p-8">
+            
+            {/* Icon */}
+            <div className="flex justify-center mb-6">
+              <div className="w-14 h-14 rounded-xl bg-[#1A2E26]/10 flex items-center justify-center">
+                <HelpCircle className="w-7 h-7 text-[#1A2E26]" />
+              </div>
             </div>
 
-            {/* Email */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Email
-              </label>
-              <input
-                type="email"
-                required
-                placeholder="you@healthsync.com"
-                className="w-full rounded-lg border border-gray-200 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
-              />
-            </div>
+            {/* Text */}
+            <h2 className="text-xl font-semibold text-center text-[#1A2E26] mb-2">
+              Facing a technical issue?
+            </h2>
+            <p className="text-sm text-center text-slate-500 mb-8">
+              Our support team is available to help you resolve system or
+              application-related problems.
+            </p>
 
-            {/* Issue Type */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Issue Type
-              </label>
-              <select
-                className="w-full rounded-lg border border-gray-200 px-4 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            {/* Contact Info */}
+            <div className="flex items-center justify-center gap-3 bg-slate-50 border rounded-xl p-4">
+              <Mail className="w-5 h-5 text-[#D4AF37]" />
+              <a
+                href="mailto:mahanandhanmanish@gmail.com"
+                className="text-sm font-semibold text-[#1A2E26] hover:underline"
               >
-                <option>Dashboard Issue</option>
-                <option>Patient Records</option>
-                <option>Consent Request</option>
-                <option>Login / Access</option>
-                <option>Other</option>
-              </select>
+                xyz@gmail.com
+              </a>
             </div>
 
-            {/* Description */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Description
-              </label>
-              <textarea
-                rows={4}
-                required
-                placeholder="Describe the issue you are facing..."
-                className="w-full rounded-lg border border-gray-200 px-4 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-yellow-400"
-              />
-            </div>
-
-            {/* Divider */}
-            <div className="border-t border-gray-100 pt-4 flex justify-end">
-              <button
-                type="submit"
-                disabled={loading}
-                className="bg-yellow-400 hover:bg-yellow-500 text-black font-medium text-sm px-6 py-2 rounded-lg transition disabled:opacity-60"
-              >
-                {loading ? "Submitting..." : "Submit Request"}
-              </button>
-            </div>
-          </form>
+            {/* Footer Note */}
+            <p className="text-xs text-center text-slate-400 mt-6">
+              Please include screenshots or error details when contacting support.
+            </p>
+          </div>
         </div>
       </main>
     </div>
