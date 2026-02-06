@@ -105,7 +105,9 @@ export default function Sidebar() {
         <Link href="/add-records">
           <NavItem index={2} icon={Users} label="Add Records" isCollapsed={isCollapsed} />
         </Link>
-        <NavItem index={4} icon={HelpCircle} label="Technical Support" isCollapsed={isCollapsed} />
+        <Link href="/technical-support">
+          <NavItem index={4} icon={HelpCircle} label="Technical Support" isCollapsed={isCollapsed} />
+        </Link>
         
         <div className="my-8 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mx-4" />
       </div>
